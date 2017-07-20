@@ -1,0 +1,126 @@
+html {
+  min-width: 320px;
+  user-select: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+/*TEST Styles for native flexboz*/
+div {
+  display: flex;
+}
+
+.App {
+  flex-direction: column;
+}
+
+.game-wrapper {
+  flex-direction: column;
+}
+
+.board {
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+}
+
+/**/
+.tile {
+  margin: 0 2px;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+  /*width: 50px;
+  height: 50px;*/
+  display: inline-block;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.tile figure {
+  margin: 0;
+  /*display: block;*/
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  color: #fff;
+}
+
+.tile .revers {
+  background: #E0E0E0;
+  color: #E0E0E0;
+}
+
+.tile .avers {
+  background: #42A5F5;
+  transform: rotateY( 180deg );
+  text-align: center;
+}
+
+.tile.flipped {
+  transform: rotateY( 180deg );
+}
+
+.tile.matched figure {
+  background-color: #8bc34a;
+  transition: background-color 0.3s;
+}
+
+/*Spinner styles*/
+.spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: 0;
+  text-align: center;
+  z-index: 990;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.spinner:before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid rgba(0,0,0,.1);
+}
+
+.spinner:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  animation: loader .6s linear;
+  animation-iteration-count: infinite;
+  border-radius: 500rem;
+  border-color: rgba(0,0,0,.5) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+  border-style: solid;
+  border-width: 2px;
+  box-shadow: 0 0 0 1px transparent;
+}
+
+
+@keyframes loader {
+  from {
+    -webkit-transform: rotate(0);
+    transform: rotate(0)
+  }
+
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg)
+  }
+}
