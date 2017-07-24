@@ -18,9 +18,16 @@ class Board extends Component {
 		this.debounce = false;
 		this.moves = 0;
 
+		let screenWidth;
+		if(window.innerWidth >= 640) {
+			screenWidth = 640;
+		} else {
+			screenWidth = window.innerWidth;
+		}
+
 		this.boardStyle = {
-			width: window.innerWidth + 'px',
-			height: window.innerWidth + 'px'
+			width: screenWidth + 'px',
+			height: screenWidth + 'px'
 		}
 
 		this.tileClickHandler = this.tileClickHandler.bind(this);
@@ -109,7 +116,13 @@ class Board extends Component {
 	}
 
 	renderTiles() {
-		let tileSize = (window.innerWidth - 6 * this.props.size -17) / this.props.size;
+		let screenWidth;
+		if(window.innerWidth >= 640) {
+			screenWidth = 640;
+		} else {
+			screenWidth = window.innerWidth;
+		}
+		let tileSize = (screenWidth - 6 * this.props.size -17) / this.props.size;
 		return this.state.tiles.map((tile, index) => <Tile key={ index } idx={ index } size={ tileSize } classNames={ tile.classNames } value={ tile.value } onClick={ this.tileClickHandler }/>)
 	}
 
